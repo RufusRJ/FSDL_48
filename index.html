@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Login System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Set Login Credentials</h2>
+  <label>Username: <input type="text" id="set-username"></label><br><br>
+  <label>Password: <input type="password" id="set-password"></label><br><br>
+  <button onclick="setCredentials()">Save Credentials</button>
+
+  <hr>
+
+  <h2>Login Form</h2>
+  <form onsubmit="checkLogin(event)">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" required><br><br>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    let validUsername = "";
+    let validPassword = "";
+
+    function setCredentials() {
+      validUsername = document.getElementById("set-username").value;
+      validPassword = document.getElementById("set-password").value;
+
+      if (validUsername && validPassword) {
+        alert("Credentials saved!");
+      } else {
+        alert("Please enter both username and password.");
+      }
+    }
+
+    function checkLogin(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === validUsername && password === validPassword) {
+        document.getElementById("result").textContent = "success";
+        document.getElementById("result").style.color = "green";
+      } else {
+        document.getElementById("result").textContent = "failure";
+        document.getElementById("result").style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>
